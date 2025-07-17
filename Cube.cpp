@@ -49,3 +49,71 @@ void Cube::print() const{
         cout << endl;
 }
 }
+
+void Cube::move(string turn) {
+    // yellow = 0 | white = 1 | blue = 2 | green = 3 | red = 4 | orange = 5 |
+    /* thinking we should have white always on the bottom and yellow on top, and then blue facing you */
+    if(turn == "R") { //rotate the right face
+        //with blue in front, the orange face rotates
+        char cubeSaver[SIZE][SIZE];
+        for(int i = 0; i < SIZE; ++i ) {
+            for(int j = 0; j < SIZE; ++j ){
+                cubeSaver[i][j] = cube[5][i][j];
+                
+            }
+        }
+/*
+        
+        abc
+        def
+        ghi
+
+        gda
+        heb
+        ifc
+
+        taking the row and putting it into column
+
+*/
+
+        for(int i = 0; i < SIZE; ++i) {
+            for(int j = 0; j < SIZE; ++j) {
+                cube[5][j][2 - i] = cubeSaver[i][j];
+            }
+        }
+
+        char storeColumn[SIZE]; // store data for yellow
+        for (int i = 0; i < SIZE; ++i) {
+            storeColumn[i] = cube[0][i][2];
+        }
+
+        //yellow to blue
+        for (int i = 0; i < SIZE; ++i) {
+            cube[0][i][2] = cube[3][2 - i][0];
+        }
+    }
+
+
+/*
+    
+blue (front)
+adjacent to: yellow, white, red, orange
+
+green (back)
+adjacent to: yellow, white, red, orange
+
+yellow (top)
+adjacent to: blue, green, red, orange
+
+white (bottom)
+adjacent to: blue, green, red, orange
+
+red (left)
+adjacent to: yellow, white, blue, green
+
+orange (right)
+adjacent to: yellow, white, blue, green
+
+    */
+
+}
