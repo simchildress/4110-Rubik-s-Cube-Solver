@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 class Cube {
     public:
         static const int SIZE = 3;
