@@ -37,7 +37,7 @@ void Cube::print() const{
 
     string faceNames[NUM_FACES] = {"yellow", "white", "blue", "green", "red", "orange"}; // yellow (top) - white (bottom) - blue (front) - green (back) - red (left) - orange (right)
 
-    cout << "Here is your unsolved cube:\n\n";
+    cout << "Here is your original cube:\n\n";
     for (int face = 0; face < NUM_FACES; ++face) {
         cout << faceNames[face] << " face:\n";
         for (int row = 0; row < SIZE; ++row) {
