@@ -54,9 +54,10 @@ void Cube::print() const {
     }
 }
 
+/*
 void Cube::move(string turn) {
     // yellow = 0 | white = 1 | blue = 2 | green = 3 | red = 4 | orange = 5 |
-    /* thinking we should have white always on the bottom and yellow on top, and then blue facing you */
+    // thinking we should have white always on the bottom and yellow on top, and then blue facing you 
     if(turn == "R") { //rotate the right (orange) face clockwise
         // store the original orange face
         char cubeSaver[SIZE][SIZE];
@@ -142,3 +143,65 @@ void Cube::move(string turn) {
         }
     }
 }
+*/
+
+//"move" currently only works to hard rotate what is labeled as the red face to the right
+void Cube::move(){
+	char face[1][3][3];
+    
+    //mapping cube face (not sides)
+    for(int j = 0; j < 3; j++){
+        for(int k = 0; k < 3; k++){
+            face[0][j][k] = cube[4][j][k];
+        }
+    }
+
+    //rotating the cube
+    int k = 2;
+    cout<<endl;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            cube[4][j][k] = face[0][i][j];
+        }
+        k--;
+    }
+    /* Cut/Paste version of what would be F' looking at the red face
+        int face[1][3][3];
+    
+    //mapping cube face (not sides)
+    for(int j = 0; j < 3; j++){
+        for(int k = 0; k < 3; k++){
+            face[0][j][k] = cube[4][j][k];
+        }
+    }
+    
+    //cube output before rotate
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            cout<<face[0][i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+    int k = 2;
+    //  This logic works for F' 
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            cube[4][i][j] = face[0][j][k];
+            //cout<<cube[4][i][j]<<" ";
+        }
+        //cout<<endl;
+        k--;
+    }
+    
+    cout<<endl;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            cout<<cube[4][i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    */
+    
+}
+
