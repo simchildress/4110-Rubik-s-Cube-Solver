@@ -20,9 +20,11 @@ myCube.move();
 cout << "Turning the right face of your cube (orange face)\n";
 
 */
-
-
-
+    //before move
+    myCube.print();
+    cout<<endl;
+    //after move
+    myCube.move
 //prints the cube they inputed    
     myCube.print();
 
