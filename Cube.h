@@ -12,7 +12,8 @@ class Cube {
 
         void input();
         void print() const; //read only
-        void move(string turn);//turns the cube
+        //void move(string turn);//turns the cube
+        //void move();
 
 
     private:
