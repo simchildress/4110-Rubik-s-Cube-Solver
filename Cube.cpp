@@ -29,6 +29,12 @@ void Cube::input() {
             }
         }
     }
+            char middleColor[NUM_FACES] = {'y', 'w', 'b', 'g', 'r', 'o'};
+    
+            if (cube[face][1][1] != middleColor[face]) {
+                cout << "\nError: Center of " << faceNames[face] << " face must be '" << middleColor[face] << "'. Try again.\n";
+                face--; // redo this face
+        }
 }
 
 }
