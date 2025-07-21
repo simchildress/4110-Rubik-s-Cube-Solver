@@ -99,7 +99,7 @@ void Cube::move(string turn) {
             cube[3][2 - i][0] = storeYellowColumn[i];
         }
 
-    } else if (turn == "W") { // rotate the white (bottom) face clockwise
+    } else if (turn == "D") { // rotate the white (bottom) face clockwise
         // store the original white face
         char cubeSaver[SIZE][SIZE];
         for(int i = 0; i < SIZE; ++i ) {
@@ -112,6 +112,48 @@ void Cube::move(string turn) {
         for(int i = 0; i < SIZE; ++i) {
             for(int j = 0; j < SIZE; ++j) {
                 cube[1][j][2 - i] = cubeSaver[i][j];
+            }
+        }
+        
+        // store the bottom row of the blue face
+        char storeBlueRow[SIZE];
+        for (int i = 0; i < SIZE; ++i) {
+            storeBlueRow[i] = cube[2][2][i]; // blue face, bottom row
+        }
+        
+        // blue -> red
+        for (int i = 0; i < SIZE; ++i) {
+            cube[2][2][i] = cube[4][2][i];
+        }
+        
+        // red -> green
+        for (int i = 0; i < SIZE; ++i) {
+            cube[4][2][i] = cube[3][2][i];
+        }
+        
+        // green -> orange
+        for (int i = 0; i < SIZE; ++i) {
+            cube[3][2][i] = cube[5][2][i];
+        }
+        
+        // orange -> blue
+        for (int i = 0; i < SIZE; ++i) {
+            cube[5][2][i] = storeBlueRow[i];
+        }
+
+    } else if (turn == "D'") { // rotate the white (bottom) face counter clockwise
+        // store the original white face
+        char cubeSaver[SIZE][SIZE];
+        for(int i = 0; i < SIZE; ++i ) {
+            for(int j = 0; j < SIZE; ++j ){
+                cubeSaver[i][j] = cube[1][i][j]; // white face
+            }
+        }
+
+        // rotate the white face 90 degrees counter clockwise
+        for(int i = 0; i < SIZE; ++i) {
+            for(int j = 0; j < SIZE; ++j) {
+            cube[1][2 - j][i] = cubeSaver[i][j];
             }
         }
 
@@ -141,4 +183,3 @@ void Cube::move(string turn) {
             cube[4][2][i] = storeBlueRow[i];
         }
     }
-}
