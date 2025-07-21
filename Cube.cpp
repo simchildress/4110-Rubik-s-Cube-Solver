@@ -55,8 +55,12 @@ void Cube::print() const {
 }
 
 void Cube::move(string turn) {
-    // yellow = 0 | white = 1 | blue = 2 | green = 3 | red = 4 | orange = 5 |
-    /* thinking we should have white always on the bottom and yellow on top, and then blue facing you */
+    /* 
+    - Lets have the letters for the clockwise turns be: R (right face) | L (left face) | U (upper face/face on top) | D (down face/face on bottom) | F (front face) | B (back face)
+    - Then the counter clockwise turns would be: R' | L' | U' | D' | F' | B' 
+    - | yellow = 0 | white = 1 | blue = 2 | green = 3 | red = 4 | orange = 5 |
+    - thinking we should have white always on the bottom and yellow on top, and then blue facing you
+    */
     if(turn == "R") { //rotate the right (orange) face clockwise
         // store the original orange face
         char cubeSaver[SIZE][SIZE];
@@ -99,6 +103,47 @@ void Cube::move(string turn) {
             cube[3][2 - i][0] = storeYellowColumn[i];
         }
 
+    } else if (turn == "R'") { // rotate the right (orange) face counterclockwise
+        // store the original orange face
+        char cubeSaver[SIZE][SIZE];
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                cubeSaver[i][j] = cube[5][i][j]; // orange face
+            }
+        }
+    
+        // rotate the orange face 90 degrees counterclockwise
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                cube[5][2 - j][i] = cubeSaver[i][j];
+            }
+        }
+    
+        // store the right column of the yellow face
+        char storeYellowColumn[SIZE];
+        for (int i = 0; i < SIZE; ++i) {
+            storeYellowColumn[i] = cube[0][i][2]; // yellow face, right column
+        }
+    
+        // yellow (0) right column -> green (3) left column (reversed)
+        for (int i = 0; i < SIZE; ++i) {
+            cube[0][i][2] = cube[3][2 - i][0];
+        }
+    
+        // green (3) left column (reversed) -> white (1) right column
+        for (int i = 0; i < SIZE; ++i) {
+            cube[3][2 - i][0] = cube[1][i][2];
+        }
+    
+        // white (1) right column -> blue (2) right column
+        for (int i = 0; i < SIZE; ++i) {
+            cube[1][i][2] = cube[2][i][2];
+        }
+    
+        // blue (2) right column -> yellow (0) right column
+        for (int i = 0; i < SIZE; ++i) {
+            cube[2][i][2] = storeYellowColumn[i];
+        }
     } else if (turn == "D") { // rotate the white (bottom) face clockwise
         // store the original white face
         char cubeSaver[SIZE][SIZE];
@@ -183,3 +228,4 @@ void Cube::move(string turn) {
             cube[4][2][i] = storeBlueRow[i];
         }
     }
+}
