@@ -121,22 +121,22 @@ void Cube::move(string turn) {
             storeBlueRow[i] = cube[2][2][i]; // blue face, bottom row
         }
         
-        // blue -> red
+        // blue (2) bottom row -> orange (5) bottom row
         for (int i = 0; i < SIZE; ++i) {
             cube[2][2][i] = cube[4][2][i];
         }
         
-        // red -> green
+        // orange (5) bottom row -> green (3) bottom row
         for (int i = 0; i < SIZE; ++i) {
             cube[4][2][i] = cube[3][2][i];
         }
         
-        // green -> orange
+        // green (3) bottom row -> red (4) bottom row
         for (int i = 0; i < SIZE; ++i) {
             cube[3][2][i] = cube[5][2][i];
         }
         
-        // orange -> blue
+        // red (4) bottom row -> blue (2) bottom row
         for (int i = 0; i < SIZE; ++i) {
             cube[5][2][i] = storeBlueRow[i];
         }
@@ -163,22 +163,22 @@ void Cube::move(string turn) {
             storeBlueRow[i] = cube[2][2][i]; // blue face, bottom row
         }
 
-        // blue (2) bottom row -> orange (5) bottom row
+        // blue -> red
         for (int i = 0; i < SIZE; ++i) {
             cube[2][2][i] = cube[5][2][i];
         }
 
-        // orange (5) bottom row -> green (3) bottom row
+        // red -> green
         for (int i = 0; i < SIZE; ++i) {
             cube[5][2][i] = cube[3][2][i];
         }
 
-        // green (3) bottom row -> red (4) bottom row
+        // green -> orange
         for (int i = 0; i < SIZE; ++i) {
             cube[3][2][i] = cube[4][2][i];
         }
 
-        // red (4) bottom row -> blue (2) bottom row
+        // orange -> blue
         for (int i = 0; i < SIZE; ++i) {
             cube[4][2][i] = storeBlueRow[i];
         }
