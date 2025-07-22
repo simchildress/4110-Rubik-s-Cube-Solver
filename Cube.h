@@ -14,6 +14,7 @@ class Cube {
         void print() const; //read only
         void move(string turn);//turns the cube
         bool isValidCube();//checks if characters show 9 times for each face color
+        char getColor(int face, int row, int col) const;
 
 
     private:
