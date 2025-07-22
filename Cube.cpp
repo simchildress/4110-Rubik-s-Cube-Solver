@@ -529,3 +529,7 @@ void Cube::move(string turn) {
             cube[5][i][2] = temp[i];
     }
 }
+
+char Cube::getColor(int face, int row, int col) const { //returns the color for each index and stores it for later
+    return cube[face][row][col];
+}
