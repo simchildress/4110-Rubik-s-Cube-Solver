@@ -13,6 +13,7 @@ class Cube {
         void input();
         void print() const; //read only
         void move(string turn);//turns the cube
+        bool isValidCube();//checks if characters show 9 times for each face color
 
 
     private:
