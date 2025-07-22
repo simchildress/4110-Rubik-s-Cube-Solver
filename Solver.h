@@ -7,6 +7,8 @@
 class Solver {
 public:
     void whiteEdgesToTop(Cube& cube);
+    bool isWhiteCross(Cube& cube);
+    void whiteEdgesToBottom(Cube& cube);
 };
 
 #endif
