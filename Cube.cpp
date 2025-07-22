@@ -36,6 +36,36 @@ void Cube::input() {
             }
         }
     }
+          while (!isValidCube()) {
+        cout << "\nWARNING! ERROR!\nCube input is invalid. Please re-enter all faces.\n";
+        input(); //redo the cube
+        return;
+    }
+}
+
+bool Cube::isValidCube() {
+    int colorCount[256] = {0}; // ASCII indexed
+
+    for (int face = 0; face < NUM_FACES; ++face) {
+        for (int row = 0; row < SIZE; ++row) {
+            for (int col = 0; col < SIZE; ++col) {
+                colorCount[(int)cube[face][row][col]]++;
+            }
+        }
+    }
+
+    // Expected colors
+    char expectedColors[NUM_FACES] = {'y', 'w', 'b', 'g', 'r', 'o'};
+
+    for (int i = 0; i < NUM_FACES; ++i) {
+        if (colorCount[(int)expectedColors[i]] != 9) {
+            cout << "Invalid cube: Color '" << expectedColors[i] << "' appears " 
+                 << colorCount[(int)expectedColors[i]] << " times instead of 9.\n";
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void Cube::print() const {
