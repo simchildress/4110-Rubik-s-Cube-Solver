@@ -10,7 +10,7 @@ void Cube::input() {
 
     cout << "Enter Your Rubik's Cube: \n";
     for (int face = 0; face < NUM_FACES; ++face) {
-        cout << "\nEnter your colors for the " << faceNames[face] << " face (use 9 letters with spaces, e.g., 'yyywwwbbb')\n*Your middle color needs to be the same as the face color*: \n";
+        cout << "\nEnter your colors for the " << faceNames[face] << " face (use 9 letters without spaces, e.g., 'yyywwwbbb')\n*Your middle color needs to be the same as the face color*: \n";
 
         string input;
         while(true) {
