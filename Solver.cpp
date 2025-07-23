@@ -160,5 +160,8 @@ void Solver::whiteEdgesToTop(Cube& cube) {
     } while (moved);
 }
 
-void Solver::whiteEdgesToBottom(Cube& cube) {}
+//WIP
+void Solver::whiteEdgesToBottom(Cube& cube) {
+    
+}
     
