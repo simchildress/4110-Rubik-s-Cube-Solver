@@ -18,11 +18,20 @@ Cube myCube;
 //prints the cube they inputed  
     myCube.print();
 
-/*
+
     cout << "Here is your new cube:\n\n";
 //Turns Cube then prints (test)
     Solver solver; // Create Solver
     solver.whiteEdgesToTop(myCube); 
+    myCube.print();
+    solver.whiteEdgesToBottom(myCube);
+    myCube.print();
+    
+    //solver.whiteCornerSolver(myCube);
+    //myCube.print();
+
+/*
+    myCube.move("U");
     myCube.print();
 */
     cout << endl;
