@@ -52,38 +52,38 @@ void Solver::whiteEdgesToTop(Cube& cube) {
                   
                     // if the target yellow edge is already white, rotate U face until it's not
                     while (targetPos != "" && cube.getColor(0, targetPos[0]-'0', targetPos[2]-'0') == 'w') {
-                        cout << "Performing move: U" << endl;
+                        cout << "Turning yellow face" << endl;
                         cube.move("U");
                     }
                     //white face
                     if (face == 1) {
                         if (row == 0 && col == 1) {
-                            cout << "Performing move: F" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F");
-                            cout << "Performing move: F" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 2 && col == 1) {
-                            cout << "Performing move: B" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B");
-                            cout << "Performing move: B" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 0) {
-                            cout << "Performing move: L" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L");
-                            cout << "Performing move: L" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 2) {
-                            cout << "Performing move: R" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R");
-                            cout << "Performing move: R" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         }
                         moved = true;
@@ -92,24 +92,24 @@ void Solver::whiteEdgesToTop(Cube& cube) {
                     //blue face
                     if (face == 2) {
                         if (row == 2 && col == 1) {
-                            cout << "Performing move: F" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 0 && col == 1) {
-                            cout << "Performing move: F'" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 0) {
-                            cout << "Performing move: L'" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 2) {
-                            cout << "Performing move: R" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         }
                         moved = true;
@@ -118,24 +118,24 @@ void Solver::whiteEdgesToTop(Cube& cube) {
                     //green face
                     if (face == 3) {
                         if (row == 2 && col == 1) {
-                            cout << "Performing move: B" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 0 && col == 1) {
-                            cout << "Performing move: B'" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 0) {
-                            cout << "Performing move: R'" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 2) {
-                            cout << "Performing move: L" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         }
                         moved = true;
@@ -144,24 +144,24 @@ void Solver::whiteEdgesToTop(Cube& cube) {
                     //red face
                     if (face == 4) {
                         if (row == 2 && col == 1) {
-                            cout << "Performing move: L" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 0 && col == 1) {
-                            cout << "Performing move: L'" << endl;
+                            cout << "Turning orange face" << endl;
                             cube.move("L'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 0) {
-                            cout << "Performing move: B'" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 2) {
-                            cout << "Performing move: F" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         }
                         moved = true;
@@ -170,24 +170,24 @@ void Solver::whiteEdgesToTop(Cube& cube) {
                     //orange face
                     if (face == 5) {
                         if (row == 2 && col == 1) {
-                            cout << "Performing move: R" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 0 && col == 1) {
-                            cout << "Performing move: R'" << endl;
+                            cout << "Turning red face" << endl;
                             cube.move("R'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 0) {
-                            cout << "Performing move: F'" << endl;
+                            cout << "Turning green face" << endl;
                             cube.move("F'");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         } else if (row == 1 && col == 2) {
-                            cout << "Performing move: B" << endl;
+                            cout << "Turning blue face" << endl;
                             cube.move("B");
-                            cout << "Performing move: U" << endl;
+                            cout << "Turning yellow face" << endl;
                             cube.move("U");
                         }
                         moved = true;
@@ -207,7 +207,7 @@ void Solver::whiteEdgesToTop(Cube& cube) {
 
 void Solver::whiteEdgesToBottom(Cube& cube) {
     
-    cout << "moving edges to white face\n";
+    cout << "Moving edges to white face\n";
     cube.move("F");
     cube.move("F");
     cube.move("B");
