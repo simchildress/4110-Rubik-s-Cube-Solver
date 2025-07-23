@@ -205,8 +205,146 @@ void Solver::whiteEdgesToTop(Cube& cube) {
     } while (moved);
 }
 
-//WIP
 void Solver::whiteEdgesToBottom(Cube& cube) {
     
+    cout << "moving edges to white face\n";
+    cube.move("F");
+    cube.move("F");
+    cube.move("B");
+    cube.move("B");
+    cube.move("R");
+    cube.move("R");
+    cube.move("L");
+    cube.move("L");
+
+    }
+    
+/*
+thoughts for the conrer pieces:(bottom layer)
+- 1. we will check the corner pieces on the bottom layer first
+- 2. check if the corner piece has a white character on the bottom, if it doesn't move to step 4
+- 3. if the adjacent colors match the face they are in leave them be
+- 4. if the adjacent colors do not match the face they are in then we will do a face turn for the column its in, 
+  then a U turn, then counter clockwise for the column its in, then U' to bring the corner piece up
+- 5. after we will turn the top layer till the adjacent colors match 
+- 6. then we will do the same algorithm as before and loop (a face turn for the column its in, 
+  then a U turn, then counter clockwise for the column its in, then U') until the white is on bottom
+
+Corner pieces part 2: (bottom layer)
+- 1. we will check the corner pieces on the top layer
+- 2. loop until the adjacent colors of the selected corner peice match the adjacent faces
+- 3. then da this loop again until the white character is on the bottom (a face turn for the column its in, 
+  then a U turn, then counter clockwise for the column its in, then U')
+  
+  we just loop through those until all of the white characters are on the bottom then the loop ends
+  
+
+void Solver::whiteCornerSolver(Cube& cube) {
+    int attempts = 0;
+    const int maxAttempts = 150;
+    bool moved;
+
+    // updated to match actual cube orientation
+    struct Corner {
+        int f1, r1, c1; // one facelet
+        int f2, r2, c2; // second facelet
+        int f3, r3, c3; // third facelet
+    };
+
+    // bottom layer corners (white face = 1)
+    Corner bottomCorners[4] = {
+        {1, 0, 0, 2, 2, 0, 4, 2, 2}, // front-left
+        {1, 0, 2, 2, 2, 2, 5, 2, 0}, // front-right
+        {1, 2, 0, 3, 0, 2, 4, 2, 0}, // back-left
+        {1, 2, 2, 3, 0, 0, 5, 2, 2}  // back-right
+    };
+
+    // top layer corners (yellow face = 0)
+    Corner topCorners[4] = {
+        {0, 2, 0, 2, 0, 0, 4, 0, 2}, // front-left
+        {0, 2, 2, 2, 0, 2, 5, 0, 0}, // front-right
+        {0, 0, 0, 3, 2, 2, 4, 0, 0}, // back-left
+        {0, 0, 2, 3, 2, 0, 5, 0, 2}  // back-right
+    };
+
+    do {
+        moved = false;
+
+        // Step 1: check bottom corners
+        for (Corner& c : bottomCorners) {
+            char cw = cube.getColor(c.f1, c.r1, c.c1);
+            if (cw != 'w') continue;
+
+            char a1 = cube.getColor(c.f2, c.r2, c.c2);
+            char a2 = cube.getColor(c.f3, c.r3, c.c3);
+            char c1 = cube.getColor(c.f2, 1, 1);
+            char c2 = cube.getColor(c.f3, 1, 1);
+
+            if (a1 != c1 || a2 != c2) {
+                // pop corner to top layer
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+                cube.move("U'");
+                moved = true;
+                break;
+            }
+        }
+
+        if (moved) {
+            attempts++;
+            continue;
+        }
+
+        // Step 2: insert one corner from top layer
+        for (Corner& c : topCorners) {
+            char c1 = cube.getColor(c.f1, c.r1, c.c1);
+            char c2 = cube.getColor(c.f2, c.r2, c.c2);
+            char c3 = cube.getColor(c.f3, c.r3, c.c3);
+            if (c1 != 'w' && c2 != 'w' && c3 != 'w') continue;
+
+            // rotate U until adjacent faces align with centers
+            for (int i = 0; i < 4; ++i) {
+                char a1 = cube.getColor(c.f2, c.r2, c.c2);
+                char a2 = cube.getColor(c.f3, c.r3, c.c3);
+                char ctr1 = cube.getColor(c.f2, 1, 1);
+                char ctr2 = cube.getColor(c.f3, 1, 1);
+                if (a1 == ctr1 && a2 == ctr2) break;
+                cube.move("U");
+            }
+
+            // determine insertion direction
+            bool insertLeft = (c.f3 == 4); // red on left
+            bool insertRight = (c.f3 == 5); // orange on right
+
+            if (insertLeft) {
+                cube.move("L'");
+                cube.move("U'");
+                cube.move("L");
+            } else if (insertRight) {
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+            } else {
+                // fallback — treat it as right insert
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+            }
+
+            moved = true;
+            break;
+        }
+
+        attempts++;
+    } while (moved && attempts < maxAttempts);
+
+    if (attempts == maxAttempts) {
+        cout << "Warning: whiteCornerSolver hit max attempts.\n";
+    } else {
+        cout << "White corners solved successfully.\n";
+    }
 }
+*/
+
     
