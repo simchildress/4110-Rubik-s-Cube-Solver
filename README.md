@@ -6,7 +6,7 @@ To run the program, type in "make" to compile all programs
 
 Then run ./rubiks
 
-This will open up a prompt section to input your rubiks cube one face at a time.
+This will open up a prompt section to input your rubiks cube one face at a time, please note that you should start with the yellow face on top and the blue side facing you.
 
 When done, it will spit out your rubiks cube.
 
