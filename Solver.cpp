@@ -346,5 +346,111 @@ void Solver::whiteCornerSolver(Cube& cube) {
     }
 }
 */
+void Solver::whiteCornerSolver(Cube& cube) {
+    struct Corner {
+        int f1, r1, c1; // white sticker
+        int f2, r2, c2; // first adjacent color
+        int f3, r3, c3; // second adjacent color
+    };
 
+    Corner bottomCorners[4] = {
+        {1, 0, 0, 2, 2, 0, 4, 2, 2}, // front-left
+        {1, 0, 2, 2, 2, 2, 5, 2, 0}, // front-right
+        {1, 2, 0, 3, 0, 2, 4, 2, 0}, // back-left
+        {1, 2, 2, 3, 0, 0, 5, 2, 2}  // back-right
+    };
+
+    Corner topCorners[4] = {
+        {0, 2, 0, 2, 0, 0, 4, 0, 2}, // front-left
+        {0, 2, 2, 2, 0, 2, 5, 0, 0}, // front-right
+        {0, 0, 0, 3, 2, 2, 4, 0, 0}, // back-left
+        {0, 0, 2, 3, 2, 0, 5, 0, 2}  // back-right
+    };
+
+    int attempts = 0;
+    const int maxAttempts = 150;
+    bool moved;
+
+    do {
+        moved = false;
+
+        // Step 1: pop misaligned white corners from bottom
+        for (Corner& c : bottomCorners) {
+            char white = cube.getColor(c.f1, c.r1, c.c1);
+            if (white != 'w') continue;
+
+            char a1 = cube.getColor(c.f2, c.r2, c.c2);
+            char a2 = cube.getColor(c.f3, c.r3, c.c3);
+            char c1 = cube.getColor(c.f2, 1, 1); // center of adjacent face
+            char c2 = cube.getColor(c.f3, 1, 1);
+
+            if (a1 != c1 || a2 != c2) {
+                cout << "Popping incorrect white corner: R U R' U'\n";
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+                cube.move("U'");
+                moved = true;
+                break;
+            }
+        }
+
+        if (moved) {
+            attempts++;
+            continue;
+        }
+
+        // Step 2: insert top white corners
+        for (Corner& c : topCorners) {
+            char x = cube.getColor(c.f1, c.r1, c.c1);
+            char y = cube.getColor(c.f2, c.r2, c.c2);
+            char z = cube.getColor(c.f3, c.r3, c.c3);
+
+            if (x != 'w' && y != 'w' && z != 'w') continue;
+
+            // Rotate U until adjacent stickers match center colors
+            for (int i = 0; i < 4; ++i) {
+                char a1 = cube.getColor(c.f2, c.r2, c.c2);
+                char a2 = cube.getColor(c.f3, c.r3, c.c3);
+                char c1 = cube.getColor(c.f2, 1, 1);
+                char c2 = cube.getColor(c.f3, 1, 1);
+                if (a1 == c1 && a2 == c2) break;
+                cube.move("U");
+                cout << "Rotating U to align top corner\n";
+            }
+
+            // Determine insertion direction
+            bool insertLeft = (c.f3 == 4);
+            bool insertRight = (c.f3 == 5);
+
+            if (insertLeft) {
+                cout << "Inserting top corner on left: L' U' L\n";
+                cube.move("L'");
+                cube.move("U'");
+                cube.move("L");
+            } else if (insertRight) {
+                cout << "Inserting top corner on right: R U R'\n";
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+            } else {
+                cout << "Fallback insertion: R U R'\n";
+                cube.move("R");
+                cube.move("U");
+                cube.move("R'");
+            }
+
+            moved = true;
+            break;
+        }
+
+        attempts++;
+    } while (moved && attempts < maxAttempts);
+
+    if (attempts >= maxAttempts) {
+        cout << "whiteCornerSolver hit max attempts.\n";
+    } else {
+        cout << "whiteCornerSolver finished in " << attempts << " steps.\n";
+    }
+}
     
